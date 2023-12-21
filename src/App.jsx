@@ -1,44 +1,31 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
 import React from "react";
-import { Button, Space } from "antd";
-import { Typography } from "antd";
-const { Title } = Typography;
-function App() {
-  const [count, setCount] = useState(0);
 
+import "@mdxeditor/editor/style.css";
+
+// importing the editor and the plugin from their full paths
+import { MDXEditor } from "@mdxeditor/editor/MDXEditor";
+import { UndoRedo } from "@mdxeditor/editor/plugins/toolbar/components/UndoRedo";
+import { BoldItalicUnderlineToggles } from "@mdxeditor/editor/plugins/toolbar/components/BoldItalicUnderlineToggles";
+import { toolbarPlugin } from "@mdxeditor/editor/plugins/toolbar";
+
+function App() {
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div style={{ height: "1000px", backgroundColor: "#f78b1b33" }}>
+        <MDXEditor
+          markdown="Hello world"
+          plugins={[
+            toolbarPlugin({
+              toolbarContents: () => (
+                <>
+                  <UndoRedo />
+                  <BoldItalicUnderlineToggles />
+                </>
+              ),
+            }),
+          ]}
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-
-      <Title level={2}>... and Ant Design 5 </Title>
-      <Space wrap>
-        <Button type="primary">Primary Button</Button>
-        <Button>Default Button</Button>
-        <Button type="dashed">Dashed Button</Button>
-        <Button type="text">Text Button</Button>
-        <Button type="link">Link Button</Button>
-      </Space>
     </div>
   );
 }

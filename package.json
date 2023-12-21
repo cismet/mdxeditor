@@ -12,6 +12,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@mdxeditor/editor": "^1.14.2",
     "antd": "^5.5.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
